@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
 import isObjectsEqual from '../../utils/compare.objects';
-import Container, { positions, ResizeDot } from './styled';
-import { TypePosition, TypeResizeDotsPositions } from './types';
-
-interface IBlocks {
-  backgroundColor: string;
-  children?: any[];
-};
+import Container, { ResizeDot } from './styled';
+import { IBlocks, TypePosition, TypeResizeDotsPositions } from './types';
 
 let initialPosition: TypeResizeDotsPositions = {
   pageX: 0,
   pageY: 0,
+};
+
+let actualPosition: TypeResizeDotsPositions = {
+  pageX: 0,
+  pageY: 0,
+};
+
+let initialSize = {
+  height: 0,
+  width: 0,
 };
 
 const Block = ({ backgroundColor, children }: IBlocks) => {
@@ -18,23 +23,27 @@ const Block = ({ backgroundColor, children }: IBlocks) => {
   const [choisedResizeDot, setChoisedResizeDot] = useState<TypePosition | null>(null);
   const [resizeDots, setResizeDots] = useState<any[]>([]);
   const [resizeDotsPositions, setResizeDotsPositions] = useState<TypeResizeDotsPositions>(initialPosition);
-  const [containerSize, setContainerSize] = useState({
-    height: 0,
-    width: 0,
-  });
+  const [containerSize, setContainerSize] = useState(initialSize);
 
   useEffect(() => {
-    setResizeDots(Object.keys(positions).map((position: TypePosition) => (
+    const positions: TypePosition[] = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'];
+    setResizeDots(positions.map((position: TypePosition) => (
       <ResizeDot
         draggable
         key={position}
-        position={positions[position]}
+        position={position}
         onMouseDown={({ pageX, pageY }) => {
-          initialPosition = { pageX, pageY };
-          setResizeDotsPositions(initialPosition);
+          if (isObjectsEqual(initialPosition, {
+            pageX: 0,
+            pageY: 0,
+          })) {
+            initialPosition = { pageX, pageY };
+          }
+          setResizeDotsPositions(actualPosition);
           setChoisedResizeDot(position);
         }}
         onMouseUp={() => {
+          actualPosition = resizeDotsPositions;
           setChoisedResizeDot(null);
         }}
         onDrag={({ pageX, pageY }) => {
@@ -48,18 +57,17 @@ const Block = ({ backgroundColor, children }: IBlocks) => {
       pageX: 0,
       pageY: 0,
     })) {
-      setContainerSize({
+      initialSize = {
         height: resizeDotsPositions.pageY - initialPosition.pageY,
         width: resizeDotsPositions.pageX - initialPosition.pageX,
-      });
+      };
+      setContainerSize(initialSize);
     }
-
-    console.log('initialPosition :', initialPosition);
-    console.log('resizeDotsPositions :', resizeDotsPositions);
   }, [resizeDotsPositions]);
 
   return (
     <Container
+      draggable
       backgroundColor={backgroundColor}
       onClick={() => { setIsResizing(true); }}
       height={containerSize.height}

@@ -1,3 +1,8 @@
+export interface IBlocks {
+	backgroundColor: string;
+	children?: JSX.Element | JSX.Element[];
+}
+
 export interface InterfaceContainer {
 	backgroundColor: string;
 	children?: boolean;

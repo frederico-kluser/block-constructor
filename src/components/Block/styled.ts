@@ -30,6 +30,13 @@ export const positions = {
 	`,
 };
 
+export const icons = {
+	topLeft: 'nw-resize',
+	topRight: 'nesw-resize',
+	bottomLeft: 'nesw-resize',
+	bottomRight: 'nw-resize',
+};
+
 export const ResizeDot = styled.div<InterfaceResizeDot>`
 	background-color: gray;
 	border: 1px solid black;
@@ -37,7 +44,7 @@ export const ResizeDot = styled.div<InterfaceResizeDot>`
 	margin: -5px;
 	position: absolute;
 	width: 10px;
-	${({ position }) => position}
+	${({ position }) => positions[position]}
 `;
 
 export default Container;

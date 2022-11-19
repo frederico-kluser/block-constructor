@@ -1,13 +1,11 @@
 import Block from "./components/Block";
+import Edition from "./pages/Edition";
 import getRandomColor from "./utils/random-color";
 
 const App = () => (
-  <div style={{
-    position: "absolute",
-    left: '50%',
-    top: '50%',
-  }}>
-    <Block backgroundColor={getRandomColor()} />
+  <div>
+    <Edition />
+    {/* <Block backgroundColor={getRandomColor()} /> */}
   </div>
 );
 
