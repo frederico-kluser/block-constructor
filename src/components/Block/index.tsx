@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import isObjectsEqual from '../../utils/compare.objects';
 import Container, { ResizeDot } from './styled';
-import { IBlocks, TypePosition, TypeResizeDotsPositions } from './types';
+import { InterfaceBlocks, TypePosition, TypeResizeDotsPositions } from './types';
 
 let initialPosition: TypeResizeDotsPositions = {
   pageX: 0,
@@ -18,7 +18,7 @@ let initialSize = {
   width: 0,
 };
 
-const Block = ({ backgroundColor, children }: IBlocks) => {
+const Block = ({ backgroundColor, children }: InterfaceBlocks) => {
   const [isResizing, setIsResizing] = useState(false);
   const [choisedResizeDot, setChoisedResizeDot] = useState<TypePosition | null>(null);
   const [resizeDots, setResizeDots] = useState<any[]>([]);

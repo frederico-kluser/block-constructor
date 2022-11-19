@@ -1,4 +1,4 @@
-export interface IBlocks {
+export interface InterfaceBlocks {
 	backgroundColor: string;
 	children?: JSX.Element | JSX.Element[];
 }
