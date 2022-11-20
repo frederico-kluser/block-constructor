@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import Container, { PlayButton, Progress, ProgressButton, ProgressLine, ProgressTime } from './styled';
+import Container, { PlayButton, Progress as ProgressArea, ProgressButton, ProgressLine, ProgressTime } from './styled';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { formatDecimal } from '../../utils/format-time';
-import getPercetage from '../../utils/percentage';
+import { getPercentageOfNumber, getPercentageOfTwoNumbers } from '../../utils/percentage';
 
 const Player = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -35,6 +35,20 @@ const Player = () => {
     }
   };
 
+  const handleProgress = (event: any) => {
+    console.log('event :', event);
+    const { clientWidth } = event.target;
+    const { offsetX } = event.nativeEvent;
+    const percentageOfArea = getPercentageOfTwoNumbers(offsetX, clientWidth);
+    const percentageOfTime = getPercentageOfNumber(percentageOfArea, time);
+    console.log('percentageOfArea', percentageOfArea);
+    console.log('percentageOfTime', percentageOfTime);
+    setIsPlaying(false);
+    setTimeout(() => {
+      setActualTime(time - percentageOfTime);
+    }, 11);
+  };
+
   useEffect(() => {
     setMinutes(Math.floor(actualTime / 60));
     setSeconds(actualTime % 60);
@@ -52,11 +66,11 @@ const Player = () => {
       <PlayButton onClick={handlePlay}>
         { isPlaying ? <FaPause /> : <FaPlay /> }
       </PlayButton>
-      <Progress>
-        <ProgressLine>
-          <ProgressButton percentage={100 - getPercetage(actualTime, time)} />
+      <ProgressArea>
+        <ProgressLine onClick={handleProgress}>
+          <ProgressButton percentage={100 - getPercentageOfTwoNumbers(actualTime, time)} />
         </ProgressLine>
-      </Progress>
+      </ProgressArea>
       <ProgressTime onClick={handleTime}>
         {formatDecimal(minutes)}:{formatDecimal(seconds)}
       </ProgressTime>

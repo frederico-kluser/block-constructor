@@ -53,11 +53,18 @@ export const Progress = styled.div`
 
 export const ProgressLine = styled.div`
 	align-items: center;
-	background-color: ${THEME.colors.gray[900]};
 	display: flex;
-	height: 4px;
+	height: 20px;
 	position: relative;
 	width: 100%;
+
+	&:before {
+		background-color: ${THEME.colors.gray[900]};
+		content: '';
+		height: 4px;
+		position: absolute;
+		width: 100%;
+	}
 `;
 
 export const ProgressButton = styled.button<InterfaceProgressButton>`

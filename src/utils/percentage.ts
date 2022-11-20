@@ -1,6 +1,9 @@
-const getPercetage = (num: number, total: number): number => {
+export const getPercentageOfTwoNumbers = (num: number, total: number): number => {
 	const percentage = (num / total) * 100;
 	return percentage;
 };
 
-export default getPercetage;
+export const getPercentageOfNumber = (percentage: number, total: number): number => {
+	const num = (percentage / 100) * total;
+	return num;
+};
