@@ -36,13 +36,10 @@ const Player = () => {
   };
 
   const handleProgress = (event: any) => {
-    console.log('event :', event);
     const { clientWidth } = event.target;
     const { offsetX } = event.nativeEvent;
     const percentageOfArea = getPercentageOfTwoNumbers(offsetX, clientWidth);
     const percentageOfTime = getPercentageOfNumber(percentageOfArea, time);
-    console.log('percentageOfArea', percentageOfArea);
-    console.log('percentageOfTime', percentageOfTime);
     setIsPlaying(false);
     setTimeout(() => {
       setActualTime(time - percentageOfTime);
