@@ -44,8 +44,6 @@ const Player = () => {
       }, 10);
     } else {
       setIsPlaying(false);
-      setMinutes(0);
-      setSeconds(0);
     }
   }, [actualTime]);
 
