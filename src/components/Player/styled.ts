@@ -73,6 +73,7 @@ export const ProgressButton = styled.button<InterfaceProgressButton>`
 	height: 20px;
 	left: calc(-10px + ${({ percentage }) => percentage}%);
 	padding: 0px;
+	pointer-events: none;
 	position: relative;
 	width: 20px;
 `;
