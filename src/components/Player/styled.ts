@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import THEME from '../../style/theme';
 import { InterfaceProgressButton } from './types';
 
-const CONTAINER_HEIGHT = 50;
+const CONTAINER_HEIGHT = THEME.spacing.playerHeight;
 const CONTAINER_WIDTH = CONTAINER_HEIGHT * 1.5;
 const CLICK_EFFECT = `
 &:hover {
@@ -21,7 +21,7 @@ const Container = styled.div`
 	height: ${CONTAINER_HEIGHT}px;
 	left: 0px;
 	overflow: hidden;
-	position: absolute;
+	position: fixed;
 	width: 100%;
 `;
 

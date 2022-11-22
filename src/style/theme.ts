@@ -14,6 +14,9 @@ const THEME = {
 		},
 		white: '#FFFFFF',
 	},
+	spacing: {
+		playerHeight: 50,
+	},
 };
 
 export default THEME;

@@ -1,9 +1,10 @@
 import Edition from "./pages/Edition";
+import { EditorProvider } from "./store/contextAPI";
 
 const App = () => (
-  <div>
+  <EditorProvider>
     <Edition />
-  </div>
+  </EditorProvider>
 );
 
 export default App;
