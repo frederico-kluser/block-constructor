@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import THEME from '../style/theme';
+import THEME from '../../style/theme';
 import { InterfaceProgressButton } from './types';
 
 const CONTAINER_HEIGHT = 50;
